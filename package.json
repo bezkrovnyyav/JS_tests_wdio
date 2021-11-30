@@ -1,0 +1,22 @@
+{
+  "name": "Test_JS_wdio",
+  "version": "1.0.0",
+  "description": "Demo",
+  "author": "Andrii Bezkrovnyi",
+  "scripts": {
+    "test": "npx wdio run wdio.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bezkrovnyyav/JS_tests_wdio"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@wdio/cli": "^7.16.10",
+    "@wdio/local-runner": "^7.16.10",
+    "@wdio/mocha-framework": "^7.16.6",
+    "@wdio/selenium-standalone-service": "^7.16.6",
+    "@wdio/spec-reporter": "^7.16.9",
+    "chai": "^4.3.4"
+  }
+}
