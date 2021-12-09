@@ -17,7 +17,7 @@ class LoginPage extends BasePage {
   }
   async open() {
     await super.open(`http://localhost:3000/#/login`);
-    await this.closePopupBtn.click();
+    if (await this.closePopupBtn.isExisting()) await this.closePopupBtn.click();
   }
 
   async loginIn(email, pass) {

@@ -15,7 +15,7 @@ class MainPage extends BasePage {
 
   async open() {
     await super.open(`http://localhost:3000/#/`);
-    await this.closePopupBtn.click();
+    if (await this.closePopupBtn.isExisting()) await this.closePopupBtn.click();
   }
   async openAccountMenu() {
     await this.accountMenuBtn.click();

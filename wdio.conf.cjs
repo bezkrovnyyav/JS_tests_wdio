@@ -21,10 +21,9 @@ exports.config = {
   // will be called from there.
   //
   specs: [
-    //create new user before run this test with user@test.com and pass - user123
-    "./test/specs/negativeLoginTest.js",
-    "./test/specs/positiveLoginTets.js",
-    "./test/specs/openSocialLinkTest.js",
+    //create user with user@test.com and pass - user123
+    "./test/specs/resgistrationUserPositive.js",
+    "./test/specs/resgistrationUserNegative.js",
   ],
   // Patterns to exclude.
   exclude: [
