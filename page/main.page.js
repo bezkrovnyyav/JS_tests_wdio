@@ -14,8 +14,9 @@ class MainPage extends BasePage {
   }
 
   async open() {
-    await super.open(`http://localhost:3000/#/`);
-    if (await this.closePopupBtn.isExisting()) await this.closePopupBtn.click();
+    await super.open('/#/register');
+    await browser.pause(2000);  
+    if (await this.closePopupBtn.isClickable()) await this.closePopupBtn.click();
   }
   async openAccountMenu() {
     await this.accountMenuBtn.click();

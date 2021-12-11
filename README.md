@@ -1,9 +1,9 @@
 # JS_tests_wdio
 
-Task 14
-• Refactor pervious task to work with provided AUT (App Under Test)
-• Using Page Objects:
-• Create and automate one positive and one negative test cases for AUT login
-functionality
-• Create and Automate test for the opening social media pages flow (AUT ->
-About Us section)
+Task 15
+• Create Element Objects for all elements used in tests
+• Define base page elements and create wait for page available method
+• Implement abstraction for the element and page objects
+• Automate test user registration flow
+
+Tests for site:  https://demo-juice-shop-app.herokuapp.com/

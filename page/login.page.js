@@ -16,8 +16,9 @@ class LoginPage extends BasePage {
     return new Button($("button.close-dialog"), "close popup button");
   }
   async open() {
-    await super.open(`http://localhost:3000/#/login`);
-    if (await this.closePopupBtn.isExisting()) await this.closePopupBtn.click();
+    await super.open('/#/register');
+    await browser.pause(2000);  
+    if (await this.closePopupBtn.isClickable()) await this.closePopupBtn.click();
   }
 
   async loginIn(email, pass) {

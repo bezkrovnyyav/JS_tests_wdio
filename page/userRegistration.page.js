@@ -6,7 +6,7 @@ import Dropdown from "../elements/dropdown.js";
 class UserRegistration extends BasePage {
   get addNewCustomerLink() {
     return new Button(
-      $("div#newCustomerLink > a.primary-link"),
+      $(" a.primary-link"),
       "add new customer button"
     );
   }
@@ -36,7 +36,6 @@ class UserRegistration extends BasePage {
     await browser.waitUntil(
       async () => await this.addNewCustomerLink.isClickable()
     );
-    await this.addNewCustomerLink.click();
   }
 
   async fillRegistrationForm(email, pass, secureAnswer, option) {

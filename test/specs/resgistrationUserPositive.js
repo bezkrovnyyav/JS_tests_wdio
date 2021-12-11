@@ -11,11 +11,12 @@ let secureAnswer = chance.color();
 let option = "Mother's maiden name?";
 
 describe("Register new user", () => {
-  it("should register new user with valid credentials", async () => {
-    //register new user
+  it("Negative test for registration new user", async () => {
+    //registration new user
     await loginPage.open();
     await userRegistrationPage.addNewCustomer();
     await userRegistrationPage.fillRegistrationForm(email, pass, secureAnswer, option);
+    await browser.pause(2000);
     await userRegistrationPage.registrationButtonClick();
     await loginPage.loginIn(email, pass);
     await mainPage.openAccountMenu();
