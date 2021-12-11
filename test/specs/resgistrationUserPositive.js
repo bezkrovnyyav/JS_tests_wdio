@@ -10,7 +10,7 @@ let pass = chance.string({ length: 5 });
 let secureAnswer = chance.color();
 let option = "Mother's maiden name?";
 
-describe("Register new user", () => {
+describe("Registration new user", () => {
   it("Negative test for registration new user", async () => {
     //registration new user
     await loginPage.open();
