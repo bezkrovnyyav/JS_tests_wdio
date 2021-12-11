@@ -59,8 +59,6 @@ exports.config = {
       // 5 instances get started at a time.
       maxInstances: 1,
       browserName: "chrome",
-      'goog:chromeOptions': {
-        args:["start-maximized"]},
       acceptInsecureCerts: true,
 
       // If outputDir is provided WebdriverIO can capture driver session logs
@@ -68,7 +66,12 @@ exports.config = {
       // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
       // excludeDriverLogs: ['bugreport', 'server'],
     },
-  ],
+
+    {
+      maxInstances: 1,
+      browserName: 'firefox',
+      acceptInsecureCerts: true,
+    }],
 
   //
   // ===================
