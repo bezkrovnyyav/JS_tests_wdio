@@ -53,6 +53,7 @@ exports.config = {
   //
   
   capabilities: [
+    
     {
       // maxInstances can get overwritten per capability. So if you have an in-house Selenium
       // grid with only 5 firefox instances available you can make sure that not more than
@@ -66,7 +67,7 @@ exports.config = {
       // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
       // excludeDriverLogs: ['bugreport', 'server'],
     },
-
+    
     {
       maxInstances: 1,
       browserName: 'firefox',
@@ -142,7 +143,17 @@ exports.config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ["spec"],
+  reporters: [
+    "spec",
+    [
+      "allure",
+      {
+        outputDir: "allure-results",
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
+      },
+    ],
+  ],
 
   //
   // Options to be passed to Mocha.
@@ -185,8 +196,10 @@ exports.config = {
    * @param {Array.<String>} specs List of spec file paths that are to be run
    * @param {String} cid worker id (e.g. 0-0)
    */
-  // beforeSession: function (config, capabilities, specs, cid) {
-  // },
+   beforeSession: function (config, capabilities, specs, cid) {
+    const allureReporter = require('@wdio/allure-reporter').default;
+    global.allure = allureReporter;
+   },
   /**
    * Gets executed before test execution begins. At this point you can access to all global
    * variables like `browser`. It is the perfect place to define custom commands.
@@ -197,7 +210,6 @@ exports.config = {
   before: function (capabilities, specs) {
     browser.maximizeWindow();
     console.log(`test ${specs} has been started`);
-
   },
   /**
    * Runs before a WebdriverIO command gets executed.
@@ -240,8 +252,12 @@ exports.config = {
    * @param {Boolean} result.passed    true if test has passed, otherwise false
    * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
    */
-  // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-  // },
+   afterTest: async function(test, context, { error, result, duration, passed, retries }) {
+    if(!passed){
+      let screen = await browser.takeScreenshot();
+      await allureReporter.addAttachment("MyScreenshot", Buffer.from(screen, "base64"), "img/png");
+    }
+  },
 
   /**
    * Hook that gets executed after the suite has ended

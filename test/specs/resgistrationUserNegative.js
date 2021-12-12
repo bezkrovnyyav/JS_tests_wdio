@@ -16,7 +16,6 @@ describe("Negative test for registration new user", () => {
     await userRegistrationPage.fillRegistrationForm(email, pass, secureAnswer, option);
     await browser.pause(2000);    
     //expect to show error email and pass
-    await expect($("div#registration-form mat-error").isDesplayed());
-  
+    await expect($("div#registration-form mat-error").isDesplayed()); 
   });
 });
