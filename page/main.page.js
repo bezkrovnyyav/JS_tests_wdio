@@ -19,7 +19,10 @@ class MainPage extends BasePage {
     if (await this.closePopupBtn.isClickable()) await this.closePopupBtn.click();
   }
   async openAccountMenu() {
+    await allure.addStep('Try to open account menu');
     await this.accountMenuBtn.click();
+    await allure.endStep('passed');
+
   }
   async navigateToLogin() {
     await this.loginBtn.click();

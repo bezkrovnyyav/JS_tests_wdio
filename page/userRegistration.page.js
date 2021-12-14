@@ -33,20 +33,27 @@ class UserRegistration extends BasePage {
   }
 
   async addNewCustomer() {
+    await allure.addStep(`Button for new costomeris visible`);
     await browser.waitUntil(
       async () => await this.addNewCustomerLink.isClickable()
     );
+    await allure.endStep(`passed`);
   }
 
   async fillRegistrationForm(email, pass, secureAnswer, option) {
+    await allure.addStep(`Try to fill the registration form`);
     await this.inputEmailField.setValue(email);
     await this.inputPasswordField.setValue(pass);
     await this.inputReapetPasswordField.setValue(pass);
     await this.dropdownSecureQuestion.select(option);
     await this.secureAnswerQuestionField.setValue(secureAnswer);
+    await allure.endStep(`passed`);
   }
   async registrationButtonClick() {
+    await allure.addStep(`Try to click registration button`);
     await this.registrationButton.click();
+    await allure.endStep(`passed`);
+
   }
 }
 

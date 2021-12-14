@@ -16,15 +16,21 @@ class LoginPage extends BasePage {
     return new Button($("button.close-dialog"), "close popup button");
   }
   async open() {
+    await allure.addStep(`Try to open login page`);
     await super.open('/#/register');
     await browser.pause(2000);  
     if (await this.closePopupBtn.isClickable()) await this.closePopupBtn.click();
+    await allure.endStep(`passed`);
+
   }
 
   async loginIn(email, pass) {
+    await allure.addStep(`Try to fill login form via data`);
     await this.emailField.setValue(email);
     await this.passwordField.setValue(pass);
     await this.loginBtn.click();
+    await allure.endStep(`passed`);
+
   }
 }
 

@@ -6,7 +6,7 @@
   "license": "ISC",
   "type": "module",
   "scripts": {
-    "test": "wdio run wdio.conf.cjs",
+    "test": "wdio run wdio.conf.cjs && npx kill-port 4444",
     "allure": ".\\node_modules\\.bin\\allure generate allure-results -o allure-report --clean && allure open"
   },
   "devDependencies": {
