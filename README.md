@@ -1,8 +1,5 @@
-# JS_tests_wdio
+# JS_tests_wdio  
 
-Task 16  
-• Add Allure reporter to your framework  
-• Add screenshot ONLY for failed tests  
-• Add steps for the action methods of your page objects  
-
-Tests for site:  https://demo-juice-shop-app.herokuapp.com/ 
+Task 17    
+Update your tests for login (positive flow) to create User for tests via API as
+precondition.  

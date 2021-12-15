@@ -21,9 +21,7 @@ exports.config = {
   // will be called from there.
   //
   specs: [
-    //create user with user@test.com and pass - user123
-    "./test/specs/resgistrationUserPositive.js",
-    //"./test/specs/resgistrationUserNegative.js",
+    "./test/specs/apiLoginTest.js",
   ],
   // Patterns to exclude.
   exclude: [
@@ -51,30 +49,10 @@ exports.config = {
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
   // https://saucelabs.com/platform/platform-configurator
   //
-  
   capabilities: [
-  /*  
-    {
-      // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-      // grid with only 5 firefox instances available you can make sure that not more than
-      // 5 instances get started at a time.
-
-      maxInstances: 1,
-      browserName: "chrome",
-      acceptInsecureCerts: true,
-
-      // If outputDir is provided WebdriverIO can capture driver session logs
-      // it is possible to configure which logTypes to include/exclude.
-      // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
-      // excludeDriverLogs: ['bugreport', 'server'],
-    },
-  */  
-    {
-      maxInstances: 1,
-      browserName: 'firefox',
-      acceptInsecureCerts: true,
-    }],
-
+    { maxInstances: 1, browserName: "chrome", acceptInsecureCerts: true },
+    //{ maxInstances: 10, browserName: "firefox", acceptInsecureCerts: true },
+  ],
   //
   // ===================
   // Test Configurations
@@ -106,7 +84,7 @@ exports.config = {
   // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
   // gets prepended directly.
-  baseUrl: `https://demo-juice-shop-app.herokuapp.com/`,
+  baseUrl: ``,
   //
   // Default timeout for all waitFor* commands.
   waitforTimeout: 10000,
@@ -122,7 +100,8 @@ exports.config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services: ["selenium-standalone"],
+  services:// ["selenium-standalone"],
+  ["chromedriver"],
 
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
@@ -197,10 +176,8 @@ exports.config = {
    * @param {Array.<String>} specs List of spec file paths that are to be run
    * @param {String} cid worker id (e.g. 0-0)
    */
-   beforeSession: function (config, capabilities, specs, cid) {
-    const allureReporter = require('@wdio/allure-reporter').default;
-    global.allure = allureReporter;
-   },
+  // beforeSession: function (config, capabilities, specs, cid) {
+  // },
   /**
    * Gets executed before test execution begins. At this point you can access to all global
    * variables like `browser`. It is the perfect place to define custom commands.
@@ -209,7 +186,8 @@ exports.config = {
    * @param {Object}         browser      instance of created browser/device session
    */
   before: function (capabilities, specs) {
-    browser.maximizeWindow();
+    const allureReporter = require("@wdio/allure-reporter").default;
+    global.allure = allureReporter;
     console.log(`test ${specs} has been started`);
   },
   /**
@@ -228,9 +206,9 @@ exports.config = {
   /**
    * Function to be executed before a test (in Mocha/Jasmine) starts.
    */
-  // beforeTest: function (test, context) {
-  //   browser.setWindowSize(1920, 1080);
-  // },
+  beforeTest: function (test, context) {
+    browser.maximizeWindow();
+  },
   /**
    * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
    * beforeEach in Mocha)
@@ -253,10 +231,18 @@ exports.config = {
    * @param {Boolean} result.passed    true if test has passed, otherwise false
    * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
    */
-   afterTest: async function(test, context, { error, result, duration, passed, retries }) {
-    if(!passed){
+  afterTest: async function (
+    test,
+    context,
+    { error, result, duration, passed, retries }
+  ) {
+    if (!passed) {
       let screen = await browser.takeScreenshot();
-      await allureReporter.addAttachment("MyScreenshot", Buffer.from(screen, "base64"), "img/png");
+      await allure.addAttachment(
+        "MyScreenshot",
+        Buffer.from(screen, "base64"),
+        "img/png"
+      );
     }
   },
 

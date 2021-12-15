@@ -1,6 +1,7 @@
 import Input from "../elements/input.js";
 import BasePage from "../base/basePage.js";
 import Button from "../elements/button.js";
+import Div from "../elements/div.js";
 
 class LoginPage extends BasePage {
   get emailField() {
@@ -15,22 +16,24 @@ class LoginPage extends BasePage {
   get closePopupBtn() {
     return new Button($("button.close-dialog"), "close popup button");
   }
-  async open() {
-    await allure.addStep(`Try to open login page`);
-    await super.open('/#/register');
-    await browser.pause(2000);  
-    if (await this.closePopupBtn.isClickable()) await this.closePopupBtn.click();
-    await allure.endStep(`passed`);
-
+  get logoutBtn(){
+    return new Button($('#navbarLogoutButton'), "log out button");
   }
-
+  get errorMsg(){
+    return new Div($("//div[contains(@class, 'error')]"), "div element with error");
+  }
+  async open(url) {
+    await allure.addStep(`Try to open url`);
+    await super.open(url);
+    if (await this.closePopupBtn.isExisting()) await this.closePopupBtn.click();
+    await allure.endStep('passed');
+  }
   async loginIn(email, pass) {
-    await allure.addStep(`Try to fill login form via data`);
+    await allure.addStep(`Try to login with ${email} and ${pass}`);
     await this.emailField.setValue(email);
     await this.passwordField.setValue(pass);
     await this.loginBtn.click();
     await allure.endStep(`passed`);
-
   }
 }
 
