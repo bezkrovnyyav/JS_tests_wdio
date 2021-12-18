@@ -21,7 +21,7 @@
         "webdriverio": "^7.16.10"
     },
     "scripts": {
-        "wdio": "wdio run wdio.conf.cjs && npx kill-port 4444",
-        "allure": "./node_modules/.bin/allure generate allure-results -o allure-report --clean && allure open"
+        "test": "wdio run wdio.conf.cjs && npx kill-port 4444",
+        "allure": ".\\node_modules\\.bin\\allure generate allure-results -o allure-report --clean && allure open"
     }
 }
