@@ -8,15 +8,17 @@ class MainPage extends BasePage {
   get loginBtn() {
     return new Button($('button[routerlink="/login"]'), "login button");
   }
-
   get closePopupBtn() {
     return new Button($("button.close-dialog"), "close popup button");
   }
-
+  get closeDialogBtn(){
+    return new Button($('//a[contains(@aria-label, "dismiss cookie message")]'), "close dialog button");
+  }
   async open(url) {
     await allure.addStep(`Try to open ${url}`);
     await super.open(url);
     if (await this.closePopupBtn.isExisting()) await this.closePopupBtn.click();
+    if(await this.closeDialogBtn.isDisplayed()) await this.closeDialogBtn.click();
     await allure.endStep(`passed`);
   }
   async openAccountMenu() {

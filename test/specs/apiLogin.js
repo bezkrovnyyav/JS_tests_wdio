@@ -1,16 +1,22 @@
 import baseApi from "../../api/baseApi.js";
 import loginPage from "../../page/login.page.js";
 import mainPage from "../../page/main.page.js";
+import { Chance } from "chance";
+
+
+let chance = new Chance();
+let email = chance.email({ domain: "example.com" });
+
 
 describe("Api test", () => {
-  it("should login with api user created", async () => {
-    const userEmail = "user@test.com";
-    const userPassword = "123qwe";
+  it("should created user via api and login ", async () => {
+    const userEmail = email;
+    const userPassword = "test123";
     //get array with security questions
-    const setSecurityQuestion = await baseApi.GET("http://localhost:3000/api/SecurityQuestions/");
+    const securityQuestion = await baseApi.GET("http://localhost:3000/api/SecurityQuestions/");
     //generate random security question
     let randomQuestion = Math.floor(Math.random() * 14) + 1;
-    let { data } = setSecurityQuestion.body;
+    let { data } = securityQuestion.body;
     let randomSecurityQuestionId = data[randomQuestion].id;
     let randomSecurityQuestion = data[randomQuestion].question;
 

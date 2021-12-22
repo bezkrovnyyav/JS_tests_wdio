@@ -1,27 +1,30 @@
 {
-    "name": "app",
-    "version": "1.0.0",
-    "description": "demo",
-    "author": "Horozheieve V.V.",
-    "license": "ISC",
-    "type": "module",
-    "dependencies": {},
-    "devDependencies": {
-        "@wdio/allure-reporter": "^7.16.10",
-        "@wdio/cli": "^7.16.10",
-        "@wdio/local-runner": "^7.16.10",
-        "@wdio/mocha-framework": "^7.16.6",
-        "@wdio/selenium-standalone-service": "^7.16.11",
-        "@wdio/spec-reporter": "^7.16.9",
-        "allure-commandline": "^2.13.8",
-        "chance": "^1.1.8",
-        "chromedriver": "^96.0.0",
-        "superagent": "^6.1.0",
-        "wdio-chromedriver-service": "^7.2.2",
-        "webdriverio": "^7.16.10"
-    },
-    "scripts": {
-        "test": "wdio run wdio.conf.cjs && npx kill-port 4444",
-        "allure": ".\\node_modules\\.bin\\allure generate allure-results -o allure-report --clean && allure open"
-    }
+  "name": "Test via wdio",
+  "version": "1.0.0",
+  "description": "demo",
+  "author": "Bezkrovnyi Andrii",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@wdio/allure-reporter": "^7.16.10",
+    "@wdio/cli": "^7.16.10",
+    "@wdio/local-runner": "^7.16.10",
+    "@wdio/mocha-framework": "^7.16.6",
+    "@wdio/selenium-standalone-service": "^7.16.11",
+    "@wdio/spec-reporter": "^7.16.9",
+    "allure-commandline": "^2.13.8",
+    "chance": "^1.1.8",
+    "chromedriver": "^96.0.0",
+    "selenium-standalone": "^8.0.8",
+    "superagent": "^6.1.0",
+    "wdio-chromedriver-service": "^7.2.2",
+    "webdriverio": "^7.16.10"
+  },
+  "scripts": {
+    "test": "wdio run wdio.conf.cjs && npx kill-port 4444",
+    "test_login": "wdio run wdio.conf.cjs --suite login && npx kill-port 4444",
+    "test_registration": "wdio run wdio.conf.cjs --suite registration && npx kill-port 4444",
+    "test_buyItem": "wdio run wdio.conf.cjs --suite buyItem && npx kill-port 4444",
+    "allure": ".\\node_modules\\.bin\\allure generate allure-results -o allure-report --clean && allure open"
+  }
 }

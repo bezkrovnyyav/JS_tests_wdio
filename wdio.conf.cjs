@@ -21,8 +21,37 @@ exports.config = {
   // will be called from there.
   //
   specs: [
-    "./test/specs/apiLoginTest.js",
+    //create user with user@test.com and user2@test.com via pass - user123
+    
+    // "./test/specs/resgistrationUserPositive.js",//  ++
+   // "./test/specs/resgistrationUserNegative.js",  // ++
+    // "./test/specs/apiLogin.js", // ++
+    // "./test/specs/positiveLogin.js", //+
+    //"./test/specs/negativeTestForLogin.js.js", //+
+    // "./test/specs/openSocialLink.js",// +
+    // "./test/specs/editProfile.js",  // +
+    // "./test/specs/customerFeedback.js",  //  +
+     //"./test/specs/buyItem.js",  //  +
+    // "./test/specs/buyLastItem.js", // +
+    // "./test/specs/itemIsSold.js"  //  +
+    
   ],
+  suites: {
+    login: [
+        './test/specs/apiLogin.js',
+        './test/specs/negativeLogin.js',
+        './test/specs/positiveLogin.js',
+    ],
+    registration: [
+        './test/specs/resgistrationUserNegative.js',
+        './test/specs/resgistrationUserNegative.js',
+    ],
+    buyItem:[        
+        './test/specs/buyItem.js',
+        './test/specs/buyLastItem.js',
+        "./test/specs/itemIsSold.js",
+    ]
+},
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -50,8 +79,14 @@ exports.config = {
   // https://saucelabs.com/platform/platform-configurator
   //
   capabilities: [
-    { maxInstances: 1, browserName: "chrome", acceptInsecureCerts: true },
-    //{ maxInstances: 10, browserName: "firefox", acceptInsecureCerts: true },
+    { maxInstances: 1, 
+      browserName: "chrome", 
+      acceptInsecureCerts: true },
+/*
+    { maxInstances: 1, 
+    browserName: "firefox", 
+    acceptInsecureCerts: true },
+*/
   ],
   //
   // ===================
@@ -100,8 +135,8 @@ exports.config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services:// ["selenium-standalone"],
-  ["chromedriver"],
+  // ["selenium-standalone"],
+  services: ["chromedriver"],
 
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
@@ -239,7 +274,7 @@ exports.config = {
     if (!passed) {
       let screen = await browser.takeScreenshot();
       await allure.addAttachment(
-        "MyScreenshot",
+        "TestScreenshot",
         Buffer.from(screen, "base64"),
         "img/png"
       );
