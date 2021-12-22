@@ -1,4 +1,4 @@
-import loginPage from "../../../page/login.page.js";
+import loginPage from "../../page/login.page.js";
 
 describe("Login test application", () => {
   it("shouldn't login with invalid credentials", async () => {

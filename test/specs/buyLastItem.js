@@ -18,7 +18,7 @@ describe("Buy last item", () => {
   it("Buy last item and chech their status", async () => {
     await loginPage.open(`http://localhost:3000/#/login`);
     await loginPage.loginIn("user11@test.com", "test123");
-    await mainPage.open(`http://localhost:3000/#/`);
+    await mainPage.open(`http://localhost:3000/#/search/`);
     await basketPage.addToBasketLastItems();
     await basketPage.goToBasket();
     await basketPage.clickToCheckOutButton();

@@ -52,7 +52,7 @@ class UserRegistration extends BasePage {
     await allure.endStep(`passed`);
   }
   async registrationButtonClick() {
-    await allure.addStep(`Try to ${this.registrationButton} clikc`)
+    await allure.addStep(`Try to ${this.registrationButton} click`)
     await this.registrationButton.click();
     await allure.endStep(`passed`);
   }

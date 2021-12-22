@@ -13,7 +13,7 @@ describe("Edit user profile", () => {
     await mainPage.openAccountMenu();
     await mainPage.navigateToLogin();
     //login page and go to user account
-    await loginPage.loginIn("user2@test.com", "test123");
+    await loginPage.loginIn("user@test.com", "test123");
     await mainPage.openAccountMenu();
     await userProfilePage.openUserProfile();
     //change username and expect result

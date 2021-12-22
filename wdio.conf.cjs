@@ -21,19 +21,19 @@ exports.config = {
   // will be called from there.
   //
   specs: [
-    //create user with user@test.com and user2@test.com via pass - user123
+    //create user with user@test.com and user11@test.com via pass - user123
     
     // "./test/specs/resgistrationUserPositive.js",//  ++
-   // "./test/specs/resgistrationUserNegative.js",  // ++
+    // "./test/specs/resgistrationUserNegative.js",  // ++
     // "./test/specs/apiLogin.js", // ++
-    // "./test/specs/positiveLogin.js", //+
-    //"./test/specs/negativeTestForLogin.js.js", //+
-    // "./test/specs/openSocialLink.js",// +
-    // "./test/specs/editProfile.js",  // +
-    // "./test/specs/customerFeedback.js",  //  +
-     //"./test/specs/buyItem.js",  //  +
-    // "./test/specs/buyLastItem.js", // +
-    // "./test/specs/itemIsSold.js"  //  +
+    // "./test/specs/positiveLogin.js", //++
+    //"./test/specs/negativeTestForLogin.js", //++
+     "./test/specs/openSocialLink.js",// ++
+    // "./test/specs/editProfile.js",  // ++
+    // "./test/specs/customerFeedback.js",  //  ++
+    // "./test/specs/buyItem.js",  //  ++
+    // "./test/specs/buyLastItem.js", // ++
+    // "./test/specs/itemIsSold.js"  //  ++
     
   ],
   suites: {
@@ -49,7 +49,7 @@ exports.config = {
     buyItem:[        
         './test/specs/buyItem.js',
         './test/specs/buyLastItem.js',
-        "./test/specs/itemIsSold.js",
+        './test/specs/itemIsSold.js',
     ]
 },
   // Patterns to exclude.

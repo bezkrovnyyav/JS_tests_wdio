@@ -111,7 +111,8 @@ class BasketPage extends BasePage {
     await allure.endStep(`passed`);
   }
   async addToBasketLastItems(){
-    await allure.addStep(`Try to add two last items in to a basket`)
+    await allure.addStep(`Try to add two last items in to a basket`);
+    await browser.pause(4000);
     await this.addToBasketLastItemFirst.click();
     await this.addToBasketLastItemSecond.click();
     await allure.endStep(`passed`);
